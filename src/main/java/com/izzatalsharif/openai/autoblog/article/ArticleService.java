@@ -1,6 +1,6 @@
 package com.izzatalsharif.openai.autoblog.article;
 
-import com.izzatalsharif.openai.autoblog.exception.ArticleRequestException;
+import com.izzatalsharif.openai.autoblog.exception.article.ArticleNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class ArticleService {
 
     public Article getArticle(String title) {
         return articleRepository.findByTitle(title)
-                .orElseThrow(() -> new ArticleRequestException("article not found"));
+                .orElseThrow(ArticleNotFoundException::new);
     }
 
 }

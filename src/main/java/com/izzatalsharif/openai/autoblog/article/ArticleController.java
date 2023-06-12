@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/articles")
+@RequestMapping("/api/articles")
 public class ArticleController {
 
     private final ArticleService articleService;
@@ -19,18 +19,19 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("all")
+    @GetMapping("")
     public List<Article> getAllArticles() {
         return articleService.getAllArticles();
     }
 
-    @GetMapping("all/titles")
+    @GetMapping("/titles")
     public List<String> getAllTitles() {
         return articleService.getAllTitles();
     }
 
-    @GetMapping("article/{title}")
+    @GetMapping("/article/{title}")
     public Article getArticle(@PathVariable("title") String title) {
         return articleService.getArticle(title);
     }
+
 }

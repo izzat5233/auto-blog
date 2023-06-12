@@ -1,6 +1,6 @@
-package com.izzatalsharif.openai.autoblog.exception;
+package com.izzatalsharif.openai.autoblog.exception.user;
 
-public class UserRequestException extends ApiRequestException {
+public class UserRequestException extends RuntimeException {
 
     public UserRequestException(String message) {
         super(message);

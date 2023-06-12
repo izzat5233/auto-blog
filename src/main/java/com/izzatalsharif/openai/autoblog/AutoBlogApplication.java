@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AutoBlogApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AutoBlogApplication.class, args);
+        var context = SpringApplication.run(AutoBlogApplication.class, args);
+        System.out.println(context.getBean("restTemplate").getClass());
     }
 
 }
