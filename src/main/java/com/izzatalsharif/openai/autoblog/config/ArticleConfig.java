@@ -1,5 +1,7 @@
-package com.izzatalsharif.openai.autoblog.article;
+package com.izzatalsharif.openai.autoblog.config;
 
+import com.izzatalsharif.openai.autoblog.model.Article;
+import com.izzatalsharif.openai.autoblog.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

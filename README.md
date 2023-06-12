@@ -32,8 +32,8 @@ stored in a database and can be retrieved and displayed on a blog or any other c
 
 ### Implemented
 
-- `GET /api/articles/all`: Retrieve a list of all articles.
-- `GET /api/articles/all/titles`: Retrieve a list of all article titles.
+- `GET /api/articles`: Retrieve a list of all articles.
+- `GET /api/articles/titles`: Retrieve a list of all article titles.
 - `GET /api/articles/article/{title}`: Retrieve a single article by its title.
 
 ### Planned
