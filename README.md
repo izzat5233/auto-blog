@@ -40,3 +40,15 @@ stored in a database and can be retrieved and displayed on a blog or any other c
 
 - `POST /api/auth/login`: Authenticate an admin user and return a JWT.
 - `POST /api/articles/generate`: Generate a new article. Requires a JSON body with the title of the article to generate.
+
+## Setup
+
+Setting up the Auto Blog application involves running a Spring Boot application and setting up a PostgreSQL database.
+
+1. Create a PostgreSQL Database, name it as you wish.
+2. The following environmental variables should be added to the run configuration:
+    - `SPRING_DATASOURCE_URL` typically looks like `jdbc:postgresql://localhost:5432/your_database_name`
+    - `SPRING_DATASOURCE_USERNAME` the username which you created the database with.
+    - `SPRING_DATASOURCE_PASSWORD` and its password.
+
+- Or instead of environmental variables, place the values directly in `src/main/resources/application.properties` file.
