@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.exception.user;
+package com.izzatalsharif.openai.autoblog.exception;
 
 public class UserUnauthorizedException extends UserRequestException {
 

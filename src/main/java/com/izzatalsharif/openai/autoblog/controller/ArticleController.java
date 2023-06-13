@@ -1,17 +1,18 @@
 package com.izzatalsharif.openai.autoblog.controller;
 
-import com.izzatalsharif.openai.autoblog.model.Article;
+import com.izzatalsharif.openai.autoblog.dto.ArticleDTO;
 import com.izzatalsharif.openai.autoblog.service.ArticleService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/articles")
+@Validated
 public class ArticleController {
 
     private final ArticleService articleService;
@@ -22,8 +23,13 @@ public class ArticleController {
     }
 
     @GetMapping("")
-    public List<Article> getAllArticles() {
+    public List<ArticleDTO> getAllArticles() {
         return articleService.getAllArticles();
+    }
+
+    @PostMapping("")
+    public void createArticle(@Valid @RequestBody ArticleDTO article) {
+        articleService.createArticle(article);
     }
 
     @GetMapping("/titles")
@@ -32,8 +38,13 @@ public class ArticleController {
     }
 
     @GetMapping("/article/{title}")
-    public Article getArticle(@PathVariable("title") String title) {
+    public ArticleDTO getArticle(@NotBlank @PathVariable("title") String title) {
         return articleService.getArticle(title);
+    }
+
+    @DeleteMapping("/article/{title}")
+    public void deleteArticle(@NotBlank @PathVariable("title") String title) {
+        articleService.deleteArticle(title);
     }
 
 }

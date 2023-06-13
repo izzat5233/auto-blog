@@ -33,8 +33,10 @@ stored in a database and can be retrieved and displayed on a blog or any other c
 ### Implemented
 
 - `GET /api/articles`: Retrieve a list of all articles.
+- `POST /api/articles`: Manually add a new article. Requires a JSON body with the title and content of the article.
 - `GET /api/articles/titles`: Retrieve a list of all article titles.
 - `GET /api/articles/article/{title}`: Retrieve a single article by its title.
+- `DELETE /api/articles/article/{title}`: Delete the article with the given title.
 
 ### Planned
 
