@@ -5,6 +5,7 @@ import com.izzatalsharif.openai.autoblog.service.ArticleService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class ArticleController {
     }
 
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public void createArticle(@Valid @RequestBody ArticleDTO article) {
         articleService.createArticle(article);
     }
@@ -43,6 +45,7 @@ public class ArticleController {
     }
 
     @DeleteMapping("/article/{title}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteArticle(@NotBlank @PathVariable("title") String title) {
         articleService.deleteArticle(title);
     }
