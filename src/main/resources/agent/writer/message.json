@@ -1,6 +1,0 @@
-{
-  "keywords": "java multithreading",
-  "title": "What is a Thread?",
-  "description": "In Java, a thread is a lightweight subprocess that can perform a specific task independently. It is the smallest unit of execution that is scheduled by the operating system.",
-  "subsections": []
-}

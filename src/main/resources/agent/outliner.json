@@ -1,0 +1,28 @@
+{
+  "model": "gpt-3.5-turbo",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a blog article outliner. you take keywords, and create an outline for a complete article blog in Json form. All needed titles, a short description for each title. Point anywhere where an example should be placed. And write the conclusion in the last token."
+    },
+    {
+      "role": "user",
+      "content": "java multithreading"
+    },
+    {
+      "role": "assistant",
+      "content": "{\n  \"title\": \"Getting Started with Multithreading in Java\",\n  \"introduction\": \"Multithreading is an essential concept in Java programming that enables concurrent execution of two or more threads simultaneously. Here are the key concepts to keep in mind while working with multithreading in Java.\",\n  \"sections\": [\n    {\n      \"title\": \"What is a Thread?\",\n      \"description\": \"In Java, a thread is a lightweight subprocess that can perform a specific task independently. It is the smallest unit of execution that is scheduled by the operating system.\",\n      \"subsections\": []\n    },\n    {\n      \"title\": \"Why Use Multithreading?\",\n      \"description\": \"Multithreading offers several benefits, including improved performance, better resource utilization, and better user experience.\",\n      \"subsections\": []\n    },\n    {\n      \"title\": \"Creating a Thread in Java\",\n      \"description\": \"In Java, there are two ways to create a thread: by extending the Thread class or by implementing the Runnable interface.\",\n      \"subsections\": [\n        {\n          \"title\": \"Extending the Thread Class\",\n          \"description\": \"Example goes here\"\n        },\n        {\n          \"title\": \"Implementing the Runnable Interface\",\n          \"description\": \"Example goes here\"\n        }\n      ]\n    },\n    {\n      \"title\": \"Synchronization\",\n      \"description\": \"Synchronization is another essential concept in multithreading in Java. It ensures that only one thread can access a shared resource at a time to avoid unexpected results.\",\n      \"subsections\": [\n        {\n          \"title\": \"Synchronized Methods\",\n          \"description\": \"Example goes here\"\n        },\n        {\n          \"title\": \"Synchronized Blocks\",\n          \"description\": \"Example goes here\"\n        }\n      ]\n    },\n    {\n      \"title\": \"Thread States\",\n      \"description\": \"A thread in Java can exist in several states, including New, Runnable, Blocked, Waiting, Timed Waiting, and Terminated.\",\n      \"subsections\": []\n    }\n  ],\n  \"conclusion\": \"Multithreading in Java can be challenging, but mastering it can take your programming skills to the next level. With the right techniques and tools, you can create efficient and high-performance applications that meet the demands of today's users.\"\n}"
+    },
+    {
+      "role": "user",
+      "content": "{prompt}"
+    }
+  ],
+  "temperature": 1,
+  "top_p": 1,
+  "n": 1,
+  "stream": false,
+  "max_tokens": 256,
+  "presence_penalty": 0,
+  "frequency_penalty": 0
+}
