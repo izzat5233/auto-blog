@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -21,11 +22,20 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "title", nullable = false, unique = true)
+    @Column(name = "keywords", nullable = false, unique = true)
+    private String keywords;
+
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "content", columnDefinition = "TEXT")
-    private String content;
+    @Column(name = "introduction", nullable = false, columnDefinition = "TEXT")
+    private String introduction;
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Section> sections;
+
+    @Column(name = "conclusion", nullable = false, columnDefinition = "TEXT")
+    private String conclusion;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createAt;
