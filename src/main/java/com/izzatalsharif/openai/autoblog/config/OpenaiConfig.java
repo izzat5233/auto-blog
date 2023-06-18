@@ -1,6 +1,5 @@
 package com.izzatalsharif.openai.autoblog.config;
 
-import com.izzatalsharif.openai.autoblog.model.RequestTemplate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +15,8 @@ import java.nio.file.Files;
 @RequiredArgsConstructor
 public class OpenaiConfig {
 
-    private static final String OPENAI_API_KEY =
-            System.getenv("OPENAI_API_KEY");
+    private static final String OPENAI_API_KEY
+            = System.getenv("OPENAI_API_KEY");
 
     @Bean
     public WebClient chatCompletionWebClient() {
@@ -31,20 +30,20 @@ public class OpenaiConfig {
 
     private final ResourceLoader resourceLoader;
 
-    @Bean
-    public RequestTemplate outlinerRequestTemplate() throws IOException {
-        return new RequestTemplate(readFile("agent/outliner.json"));
-    }
-
-    @Bean
-    public RequestTemplate writerRequestTemplate() throws IOException {
-        return new RequestTemplate(readFile("agent/writer.json"));
-    }
-
     private String readFile(String resourcePath) throws IOException {
         var resource = resourceLoader.getResource("classpath:" + resourcePath);
         var path = resource.getFile().toPath();
         return Files.readString(path);
+    }
+
+    @Bean
+    public String outlinerRequestTemplate() throws IOException {
+        return readFile("agent/outliner.json");
+    }
+
+    @Bean
+    public String writerRequestTemplate() throws IOException {
+        return readFile("agent/writer.json");
     }
 
 }

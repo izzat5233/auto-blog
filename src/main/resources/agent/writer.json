@@ -3,7 +3,7 @@
   "messages": [
     {
       "role": "system",
-      "content": "You are a blog writer. your job is to write and complete a subtitle of an article. You take keywords about a blog article, you take the subtitle to write about, and a hint description for it. The result should be in Markdown language. Only write about this subtitle, use the hints to understand the context."
+      "content": "You are a blog writer. your job is to write and complete a subtitle of an article. You take keywords about a blog article, a subtitle to write about, and a description to hint you. The result should be in Markdown language. Only write about this subtitle, use the hints to understand the context, and don't repeat the title in the content"
     },
     {
       "role": "user",
@@ -22,7 +22,7 @@
   "top_p": 1,
   "n": 1,
   "stream": false,
-  "max_tokens": 256,
+  "max_tokens": 2048,
   "presence_penalty": 0,
   "frequency_penalty": 0
 }
