@@ -12,13 +12,13 @@ public class ArticleMapper {
     private static final Function<Article, ArticleDTO> TO_DTO =
             article -> ArticleDTO.builder()
                     .title(article.getTitle())
-                    .content(article.getContent())
+                    .introduction(article.getIntroduction())
                     .build();
 
     private static final Function<ArticleDTO, Article> TO_ENTITY =
             articleDTO -> Article.builder()
                     .title(articleDTO.getTitle())
-                    .content(articleDTO.getContent())
+                    .introduction(articleDTO.getIntroduction())
                     .build();
 
     public Function<Article, ArticleDTO> toDTO() {
