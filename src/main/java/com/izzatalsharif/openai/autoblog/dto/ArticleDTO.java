@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,6 +19,12 @@ public class ArticleDTO {
     @Size(max = 100, message = "Title must be less than 100 characters")
     private String title;
 
-    private String content;
+    private String keywords;
+
+    private String introduction;
+
+    private List<SectionDTO> sections;
+
+    private String conclusion;
 
 }
