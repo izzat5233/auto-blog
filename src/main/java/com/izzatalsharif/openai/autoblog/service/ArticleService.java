@@ -5,27 +5,20 @@ import com.izzatalsharif.openai.autoblog.exception.ArticleNotFoundException;
 import com.izzatalsharif.openai.autoblog.exception.ArticleRequestException;
 import com.izzatalsharif.openai.autoblog.mapper.ArticleMapper;
 import com.izzatalsharif.openai.autoblog.repository.ArticleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class ArticleService {
 
     private final ArticleRepository articleRepository;
 
-    private final ArticleMapper articleMapper;
-
-    @Autowired
-    public ArticleService(ArticleRepository articleRepository, ArticleMapper articleMapper) {
-        this.articleRepository = articleRepository;
-        this.articleMapper = articleMapper;
-    }
-
     public List<ArticleDTO> getAllArticles() {
         return articleRepository.findAll()
-                .stream().map(articleMapper.toDTO()).toList();
+                .stream().map(ArticleMapper.MAPPER::toArticleDTO).toList();
     }
 
     public List<String> getAllTitles() {
@@ -33,14 +26,13 @@ public class ArticleService {
     }
 
     public ArticleDTO getArticle(String title) {
-        return articleMapper.toDTO().apply(
+        return ArticleMapper.MAPPER.toArticleDTO(
                 articleRepository.findByTitle(title)
-                        .orElseThrow(ArticleNotFoundException::new)
-        );
+                        .orElseThrow(ArticleNotFoundException::new));
     }
 
     public void createArticle(ArticleDTO articleDTO) {
-        var article = articleMapper.toEntity().apply(articleDTO);
+        var article = ArticleMapper.MAPPER.toArticle(articleDTO);
         // make sure title is unique
         // todo: replace with a @Unique validator
         if (articleRepository.findByTitle(article.getTitle()).isPresent()) {

@@ -2,31 +2,16 @@ package com.izzatalsharif.openai.autoblog.mapper;
 
 import com.izzatalsharif.openai.autoblog.dto.ArticleDTO;
 import com.izzatalsharif.openai.autoblog.model.Article;
-import org.springframework.stereotype.Service;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-import java.util.function.Function;
+@Mapper(uses = SectionMapper.class)
+public interface ArticleMapper {
 
-@Service
-public class ArticleMapper {
+    ArticleMapper MAPPER = Mappers.getMapper(ArticleMapper.class);
 
-    private static final Function<Article, ArticleDTO> TO_DTO =
-            article -> ArticleDTO.builder()
-                    .title(article.getTitle())
-                    .introduction(article.getIntroduction())
-                    .build();
+    Article toArticle(ArticleDTO articleDTO);
 
-    private static final Function<ArticleDTO, Article> TO_ENTITY =
-            articleDTO -> Article.builder()
-                    .title(articleDTO.getTitle())
-                    .introduction(articleDTO.getIntroduction())
-                    .build();
-
-    public Function<Article, ArticleDTO> toDTO() {
-        return TO_DTO;
-    }
-
-    public Function<ArticleDTO, Article> toEntity() {
-        return TO_ENTITY;
-    }
+    ArticleDTO toArticleDTO(Article article);
 
 }
