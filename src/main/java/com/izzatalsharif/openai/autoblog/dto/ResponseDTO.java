@@ -2,7 +2,7 @@ package com.izzatalsharif.openai.autoblog.dto;
 
 import java.util.List;
 
-public record OpenaiResponse(
+public record ResponseDTO(
         String id,
         String object,
         String model,
@@ -31,7 +31,7 @@ public record OpenaiResponse(
 
     }
 
-    public String getResponse() {
+    public String getContent() {
         return choices.get(0).message.content;
     }
 
