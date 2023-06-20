@@ -7,7 +7,9 @@ import com.izzatalsharif.openai.autoblog.exception.OpenaiException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AgentService {
+public class AgentService<I, O> {
+
+    private final Class<O> outputClass;
 
     private final String template;
 
@@ -15,12 +17,12 @@ public class AgentService {
 
     private final OpenaiService openaiService;
 
-    public <T> T request(Object input, Class<T> outputClass) {
+    public O requestAndParse(I input) {
         var response = request(input).getContent();
         return fromJson(response, outputClass);
     }
 
-    public ResponseDTO request(Object input) {
+    public ResponseDTO request(I input) {
         var prompt = toJson(input);
         var body = injectRequest(prompt);
         return openaiService.chatCompletion(body);
