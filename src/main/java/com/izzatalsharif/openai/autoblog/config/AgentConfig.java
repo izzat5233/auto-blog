@@ -13,7 +13,6 @@ import org.springframework.core.io.ResourceLoader;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -33,7 +32,7 @@ public class AgentConfig {
 
     @Bean
     @Qualifier("outliner")
-    public AgentService<List<String>, ArticleOutline> outlinerAgentService() throws IOException {
+    public AgentService<String, ArticleOutline> outlinerAgentService() throws IOException {
         var template = readFile("agent/outliner.json");
         return new AgentService<>(ArticleOutline.class, template, objectMapper, openaiService);
     }

@@ -62,7 +62,7 @@ public class ArticleController {
     @GetMapping("/generate")
     @ResponseStatus(HttpStatus.CREATED)
     public void generateArticle() throws IOException {
-        ArticleDTO articleDTO = generationService.generateArticle(List.of("Bitcoin", "Elon Musk"));
+        ArticleDTO articleDTO = generationService.generateArticle("Bitcoin ElonMusk");
         System.out.println(articleDTO);
         String json = new ObjectMapper().writeValueAsString(articleDTO);
         System.out.println(json);

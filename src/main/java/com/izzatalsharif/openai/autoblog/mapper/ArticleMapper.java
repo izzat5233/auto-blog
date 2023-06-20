@@ -19,9 +19,7 @@ public interface ArticleMapper {
 
     ArticleDTO toArticleDTO(Article article);
 
-    @Mapping(target = "title", source = "articleOutline.title")
-    @Mapping(target = "introduction", source = "articleOutline.introduction")
-    @Mapping(target = "conclusion", source = "articleOutline.conclusion")
+    @Mapping(target = ".", source = "articleOutline")
     @Mapping(target = "keywords", source = "keywords")
     @Mapping(target = "sections", source = "sections")
     ArticleDTO toArticleDTO(ArticleOutline articleOutline,
