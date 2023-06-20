@@ -17,9 +17,9 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/api/articles")
-@Validated
 public class ArticleController {
 
     private final ArticleService articleService;

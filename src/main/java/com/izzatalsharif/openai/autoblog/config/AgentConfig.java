@@ -14,8 +14,8 @@ import org.springframework.core.io.ResourceLoader;
 import java.io.IOException;
 import java.nio.file.Files;
 
-@Configuration
 @RequiredArgsConstructor
+@Configuration
 public class AgentConfig {
 
     private final ResourceLoader resourceLoader;
