@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class OpenaiExceptionController {
 
-    @ExceptionHandler(value = OpenaiException.class)
+    @ExceptionHandler(OpenaiException.class)
     public ResponseEntity<Object> handleOtherExceptions(OpenaiException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Service
-public class OpenaiService {
+class OpenaiService {
 
     private final WebClient webClient;
 

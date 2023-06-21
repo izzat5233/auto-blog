@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-public class OpenaiConfig {
+class OpenaiConfig {
 
     private static final String CHAT_COMPLETION_URL
             = "https://api.openai.com/v1/chat/completions";

@@ -73,9 +73,9 @@ public class AgentService<I, O> {
      * @param openaiService the OpenaiService for sending requests to the OpenAI API
      * @throws IllegalArgumentException if the template does not contain a prompt placeholder
      */
-    public AgentService(String template,
-                        DataFormatter<I, O> formatter,
-                        OpenaiService openaiService)
+    AgentService(String template,
+                 DataFormatter<I, O> formatter,
+                 OpenaiService openaiService)
             throws IllegalArgumentException {
         if (!template.contains("{prompt}")) {
             throw new IllegalArgumentException("template does not contain a prompt placeholder");
