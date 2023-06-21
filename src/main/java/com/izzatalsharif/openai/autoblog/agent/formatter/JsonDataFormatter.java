@@ -1,7 +1,8 @@
-package com.izzatalsharif.openai.autoblog.agent;
+package com.izzatalsharif.openai.autoblog.agent.formatter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.izzatalsharif.openai.autoblog.agent.DataFormatter;
 import com.izzatalsharif.openai.autoblog.agent.exception.OpenaiException;
 import lombok.RequiredArgsConstructor;
 

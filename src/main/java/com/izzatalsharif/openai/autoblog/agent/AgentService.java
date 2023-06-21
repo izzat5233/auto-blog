@@ -43,6 +43,9 @@ package com.izzatalsharif.openai.autoblog.agent;
  *   ]
  * }
  * </pre>
+ *
+ * @param <I> the type of the input to the AgentService
+ * @param <O> the type of the output from the AgentService
  */
 public class AgentService<I, O> {
 
@@ -68,8 +71,15 @@ public class AgentService<I, O> {
      * @param template      the template string for the OpenAI API request
      * @param formatter     the DataFormatter for formatting and parsing data
      * @param openaiService the OpenaiService for sending requests to the OpenAI API
+     * @throws IllegalArgumentException if the template does not contain a prompt placeholder
      */
-    public AgentService(String template, DataFormatter<I, O> formatter, OpenaiService openaiService) {
+    public AgentService(String template,
+                        DataFormatter<I, O> formatter,
+                        OpenaiService openaiService)
+            throws IllegalArgumentException {
+        if (!template.contains("{prompt}")) {
+            throw new IllegalArgumentException("template does not contain a prompt placeholder");
+        }
         this.template = template;
         this.formatter = formatter;
         this.openaiService = openaiService;
