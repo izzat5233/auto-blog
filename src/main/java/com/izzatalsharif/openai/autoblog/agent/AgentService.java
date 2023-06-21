@@ -1,9 +1,7 @@
-package com.izzatalsharif.openai.autoblog.service;
+package com.izzatalsharif.openai.autoblog.agent;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.izzatalsharif.openai.autoblog.dto.ResponseDTO;
-import com.izzatalsharif.openai.autoblog.exception.OpenaiException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

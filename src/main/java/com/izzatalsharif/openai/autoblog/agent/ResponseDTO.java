@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.dto;
+package com.izzatalsharif.openai.autoblog.agent;
 
 import java.util.List;
 

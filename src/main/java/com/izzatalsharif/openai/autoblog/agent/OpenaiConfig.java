@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.config;
+package com.izzatalsharif.openai.autoblog.agent;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

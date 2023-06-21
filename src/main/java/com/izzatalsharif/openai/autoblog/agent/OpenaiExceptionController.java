@@ -1,6 +1,5 @@
-package com.izzatalsharif.openai.autoblog.exception.controller;
+package com.izzatalsharif.openai.autoblog.agent;
 
-import com.izzatalsharif.openai.autoblog.exception.OpenaiException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
