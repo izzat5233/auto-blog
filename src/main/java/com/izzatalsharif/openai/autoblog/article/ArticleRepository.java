@@ -1,6 +1,6 @@
-package com.izzatalsharif.openai.autoblog.repository;
+package com.izzatalsharif.openai.autoblog.article;
 
-import com.izzatalsharif.openai.autoblog.model.Article;
+import com.izzatalsharif.openai.autoblog.article.model.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

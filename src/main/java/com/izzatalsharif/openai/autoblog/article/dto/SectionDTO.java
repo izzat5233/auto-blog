@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.dto;
+package com.izzatalsharif.openai.autoblog.article.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

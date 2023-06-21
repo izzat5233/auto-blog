@@ -1,10 +1,10 @@
-package com.izzatalsharif.openai.autoblog.config;
+package com.izzatalsharif.openai.autoblog.article;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izzatalsharif.openai.autoblog.agent.AgentService;
 import com.izzatalsharif.openai.autoblog.agent.OpenaiService;
-import com.izzatalsharif.openai.autoblog.dto.agent.ArticleOutline;
-import com.izzatalsharif.openai.autoblog.dto.agent.SectionExtraOutline;
+import com.izzatalsharif.openai.autoblog.article.dto.agent.ArticleOutline;
+import com.izzatalsharif.openai.autoblog.article.dto.agent.SectionExtraOutline;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

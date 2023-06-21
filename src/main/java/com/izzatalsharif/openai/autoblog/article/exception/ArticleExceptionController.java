@@ -1,7 +1,5 @@
-package com.izzatalsharif.openai.autoblog.exception.controller;
+package com.izzatalsharif.openai.autoblog.article.exception;
 
-import com.izzatalsharif.openai.autoblog.exception.ArticleNotFoundException;
-import com.izzatalsharif.openai.autoblog.exception.ArticleRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

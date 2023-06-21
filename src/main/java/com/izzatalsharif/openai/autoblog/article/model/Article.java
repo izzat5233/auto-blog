@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.model;
+package com.izzatalsharif.openai.autoblog.article.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.exception.controller;
+package com.izzatalsharif.openai.autoblog.article.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

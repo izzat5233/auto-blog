@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.exception;
+package com.izzatalsharif.openai.autoblog.article.exception;
 
 public class ArticleNotFoundException extends ArticleRequestException {
 

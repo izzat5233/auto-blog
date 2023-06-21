@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.dto;
+package com.izzatalsharif.openai.autoblog.article.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

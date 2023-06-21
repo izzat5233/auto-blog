@@ -1,10 +1,10 @@
-package com.izzatalsharif.openai.autoblog.service;
+package com.izzatalsharif.openai.autoblog.article.service;
 
-import com.izzatalsharif.openai.autoblog.dto.ArticleDTO;
-import com.izzatalsharif.openai.autoblog.exception.ArticleNotFoundException;
-import com.izzatalsharif.openai.autoblog.exception.ArticleRequestException;
-import com.izzatalsharif.openai.autoblog.mapper.ArticleMapper;
-import com.izzatalsharif.openai.autoblog.repository.ArticleRepository;
+import com.izzatalsharif.openai.autoblog.article.ArticleRepository;
+import com.izzatalsharif.openai.autoblog.article.dto.ArticleDTO;
+import com.izzatalsharif.openai.autoblog.article.exception.ArticleNotFoundException;
+import com.izzatalsharif.openai.autoblog.article.exception.ArticleRequestException;
+import com.izzatalsharif.openai.autoblog.article.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

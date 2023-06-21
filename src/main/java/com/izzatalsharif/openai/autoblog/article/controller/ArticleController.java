@@ -1,9 +1,9 @@
-package com.izzatalsharif.openai.autoblog.controller;
+package com.izzatalsharif.openai.autoblog.article.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.izzatalsharif.openai.autoblog.dto.ArticleDTO;
-import com.izzatalsharif.openai.autoblog.service.ArticleService;
-import com.izzatalsharif.openai.autoblog.service.GenerationService;
+import com.izzatalsharif.openai.autoblog.article.dto.ArticleDTO;
+import com.izzatalsharif.openai.autoblog.article.service.ArticleService;
+import com.izzatalsharif.openai.autoblog.article.service.GenerationService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
