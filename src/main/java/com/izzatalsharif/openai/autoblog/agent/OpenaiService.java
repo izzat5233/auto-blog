@@ -17,7 +17,7 @@ public class OpenaiService {
         this.webClient = webClient;
     }
 
-    public ResponseDTO chatCompletion(String requestBody) {
+    public Response chatCompletion(String requestBody) {
         var responseMono = webClient.post()
                 .body(BodyInserters.fromValue(requestBody))
                 .retrieve()
@@ -25,7 +25,7 @@ public class OpenaiService {
                         Mono.error(new OpenaiException("4xx error " + response.statusCode())))
                 .onStatus(HttpStatusCode::is5xxServerError, response ->
                         Mono.error(new OpenaiException("5xx error " + response.statusCode())))
-                .bodyToMono(ResponseDTO.class);
+                .bodyToMono(Response.class);
         return responseMono.block();
     }
 

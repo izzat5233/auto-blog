@@ -2,7 +2,7 @@ package com.izzatalsharif.openai.autoblog.agent;
 
 import java.util.List;
 
-public record ResponseDTO(
+public record Response(
         String id,
         String object,
         String model,

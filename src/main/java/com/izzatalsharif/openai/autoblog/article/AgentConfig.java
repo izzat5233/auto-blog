@@ -1,8 +1,7 @@
 package com.izzatalsharif.openai.autoblog.article;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izzatalsharif.openai.autoblog.agent.AgentService;
-import com.izzatalsharif.openai.autoblog.agent.OpenaiService;
+import com.izzatalsharif.openai.autoblog.agent.AgentServiceFactory;
 import com.izzatalsharif.openai.autoblog.article.dto.agent.ArticleOutline;
 import com.izzatalsharif.openai.autoblog.article.dto.agent.SectionExtraOutline;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +19,7 @@ public class AgentConfig {
 
     private final ResourceLoader resourceLoader;
 
-    private final ObjectMapper objectMapper;
-
-    private final OpenaiService openaiService;
+    private final AgentServiceFactory agentServiceFactory;
 
     private String readFile(String resourcePath) throws IOException {
         var resource = resourceLoader.getResource("classpath:" + resourcePath);
@@ -34,14 +31,14 @@ public class AgentConfig {
     @Qualifier("outliner")
     public AgentService<String, ArticleOutline> outlinerAgentService() throws IOException {
         var template = readFile("agent/outliner.json");
-        return new AgentService<>(ArticleOutline.class, template, objectMapper, openaiService);
+        return agentServiceFactory.create(template, ArticleOutline.class);
     }
 
     @Bean
     @Qualifier("writer")
     public AgentService<SectionExtraOutline, String> writerAgentService() throws IOException {
         var template = readFile("agent/writer.json");
-        return new AgentService<>(String.class, template, objectMapper, openaiService);
+        return agentServiceFactory.create(template, String.class);
     }
 
 }

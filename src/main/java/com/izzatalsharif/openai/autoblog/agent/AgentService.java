@@ -3,14 +3,16 @@ package com.izzatalsharif.openai.autoblog.agent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izzatalsharif.openai.autoblog.agent.exception.OpenaiException;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class AgentService<I, O> {
 
-    private final Class<O> outputClass;
-
+    @Getter
     private final String template;
+
+    private final Class<O> outputClass;
 
     private final ObjectMapper objectMapper;
 
@@ -21,7 +23,7 @@ public class AgentService<I, O> {
         return fromJson(response, outputClass);
     }
 
-    public ResponseDTO request(I input) {
+    public Response request(I input) {
         var prompt = toJson(input);
         var body = injectRequest(prompt);
         return openaiService.chatCompletion(body);
