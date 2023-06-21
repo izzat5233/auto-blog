@@ -1,5 +1,6 @@
 package com.izzatalsharif.openai.autoblog.agent;
 
+import com.izzatalsharif.openai.autoblog.agent.exception.OpenaiException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;

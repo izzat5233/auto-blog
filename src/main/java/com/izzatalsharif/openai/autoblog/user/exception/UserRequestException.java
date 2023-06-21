@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.exception;
+package com.izzatalsharif.openai.autoblog.user.exception;
 
 public class UserRequestException extends RuntimeException {
 

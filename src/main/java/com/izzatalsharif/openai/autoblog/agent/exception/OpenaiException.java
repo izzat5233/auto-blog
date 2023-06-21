@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.agent;
+package com.izzatalsharif.openai.autoblog.agent.exception;
 
 public class OpenaiException extends RuntimeException {
 

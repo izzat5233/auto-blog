@@ -1,7 +1,5 @@
-package com.izzatalsharif.openai.autoblog.exception.controller;
+package com.izzatalsharif.openai.autoblog.user.exception;
 
-import com.izzatalsharif.openai.autoblog.exception.UserRequestException;
-import com.izzatalsharif.openai.autoblog.exception.UserUnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
