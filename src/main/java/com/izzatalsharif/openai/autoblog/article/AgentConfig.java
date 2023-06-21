@@ -31,14 +31,14 @@ public class AgentConfig {
     @Qualifier("outliner")
     public AgentService<String, ArticleOutline> outlinerAgentService() throws IOException {
         var template = readFile("agent/outliner.json");
-        return agentServiceFactory.create(template, ArticleOutline.class);
+        return agentServiceFactory.jsonFormatterAgentService(template, ArticleOutline.class);
     }
 
     @Bean
     @Qualifier("writer")
     public AgentService<SectionExtraOutline, String> writerAgentService() throws IOException {
         var template = readFile("agent/writer.json");
-        return agentServiceFactory.create(template, String.class);
+        return agentServiceFactory.jsonFormatterAgentService(template, String.class);
     }
 
 }

@@ -12,8 +12,13 @@ public class AgentServiceFactory {
 
     private final OpenaiService openaiService;
 
-    public <I, O> AgentService<I, O> create(String template, Class<O> outputClass) {
-        return new AgentService<>(template, outputClass, objectMapper, openaiService);
+    public <I, O> AgentService<I, O> jsonFormatterAgentService(String template, Class<O> outputClass) {
+        var formatter = new JsonDataFormatter<I, O>(objectMapper, outputClass);
+        return new AgentService<>(template, formatter, openaiService);
+    }
+
+    public AgentService<String, String> simpleAgentService(String template) {
+        return new AgentService<>(template, DataFormatter.STRING_DATA_FORMATTER, openaiService);
     }
 
 }
