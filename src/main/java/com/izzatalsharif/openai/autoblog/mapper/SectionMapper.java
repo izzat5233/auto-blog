@@ -1,8 +1,8 @@
 package com.izzatalsharif.openai.autoblog.mapper;
 
 import com.izzatalsharif.openai.autoblog.dto.SectionDTO;
-import com.izzatalsharif.openai.autoblog.dto.SectionOutline;
-import com.izzatalsharif.openai.autoblog.dto.WriterPrompt;
+import com.izzatalsharif.openai.autoblog.dto.agent.SectionExtraOutline;
+import com.izzatalsharif.openai.autoblog.dto.agent.SectionOutline;
 import com.izzatalsharif.openai.autoblog.model.Section;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,6 +23,6 @@ public interface SectionMapper {
 
     @Mapping(target = ".", source = "sectionOutline")
     @Mapping(target = "keywords", source = "keywords")
-    WriterPrompt toWriterPrompt(SectionOutline sectionOutline, String keywords);
+    SectionExtraOutline toWriterPrompt(SectionOutline sectionOutline, String keywords);
 
 }

@@ -1,8 +1,8 @@
 package com.izzatalsharif.openai.autoblog.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.izzatalsharif.openai.autoblog.dto.ArticleOutline;
-import com.izzatalsharif.openai.autoblog.dto.WriterPrompt;
+import com.izzatalsharif.openai.autoblog.dto.agent.ArticleOutline;
+import com.izzatalsharif.openai.autoblog.dto.agent.SectionExtraOutline;
 import com.izzatalsharif.openai.autoblog.service.AgentService;
 import com.izzatalsharif.openai.autoblog.service.OpenaiService;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +39,7 @@ public class AgentConfig {
 
     @Bean
     @Qualifier("writer")
-    public AgentService<WriterPrompt, String> writerAgentService() throws IOException {
+    public AgentService<SectionExtraOutline, String> writerAgentService() throws IOException {
         var template = readFile("agent/writer.json");
         return new AgentService<>(String.class, template, objectMapper, openaiService);
     }

@@ -1,8 +1,8 @@
 package com.izzatalsharif.openai.autoblog.mapper;
 
 import com.izzatalsharif.openai.autoblog.dto.ArticleDTO;
-import com.izzatalsharif.openai.autoblog.dto.ArticleOutline;
 import com.izzatalsharif.openai.autoblog.dto.SectionDTO;
+import com.izzatalsharif.openai.autoblog.dto.agent.ArticleOutline;
 import com.izzatalsharif.openai.autoblog.model.Article;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,9 +1,9 @@
 package com.izzatalsharif.openai.autoblog.service;
 
 import com.izzatalsharif.openai.autoblog.dto.ArticleDTO;
-import com.izzatalsharif.openai.autoblog.dto.ArticleOutline;
 import com.izzatalsharif.openai.autoblog.dto.SectionDTO;
-import com.izzatalsharif.openai.autoblog.dto.WriterPrompt;
+import com.izzatalsharif.openai.autoblog.dto.agent.ArticleOutline;
+import com.izzatalsharif.openai.autoblog.dto.agent.SectionExtraOutline;
 import com.izzatalsharif.openai.autoblog.mapper.ArticleMapper;
 import com.izzatalsharif.openai.autoblog.mapper.SectionMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class GenerationService {
 
     private final AgentService<String, ArticleOutline> outlinerAgent;
 
-    private final AgentService<WriterPrompt, String> writerAgent;
+    private final AgentService<SectionExtraOutline, String> writerAgent;
 
     public ArticleDTO generateArticle(String keywords) {
         var articleOutline = outlinerAgent.requestAndParse(keywords);
