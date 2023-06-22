@@ -13,7 +13,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -25,19 +24,16 @@ public class GenerationService {
 
     public Mono<ArticleDTO> generateArticle(String keywords) {
         return outlinerAgent.requestAndParse(keywords)
-                .flatMap(articleOutline -> {
-                    var monoList = generateSections(articleOutline);
-                    return Flux.concat(monoList)
-                            .collectList()
-                            .map(sections -> ArticleMapper.MAPPER.toArticleDTO(articleOutline, sections, keywords));
-                });
+                .flatMap(articleOutline -> generateSections(articleOutline)
+                        .map(sections -> ArticleMapper.MAPPER.toArticleDTO(articleOutline, sections, keywords)));
     }
 
-    private List<Mono<SectionDTO>> generateSections(ArticleOutline articleOutline) {
-        return articleOutline.sections().stream()
-                .map(sectionOutline -> writerAgent.requestAndParse(sectionOutline)
-                        .map(content -> SectionMapper.MAPPER.toSectionDTO(sectionOutline, content)))
-                .collect(Collectors.toList());
+    private Mono<List<SectionDTO>> generateSections(ArticleOutline articleOutline) {
+        return Flux.fromIterable(articleOutline.sections())
+                .flatMap(sectionOutline -> writerAgent.requestAndParse(sectionOutline)
+                                .map(content -> SectionMapper.MAPPER.toSectionDTO(sectionOutline, content)),
+                        articleOutline.sections().size())
+                .collectList();
     }
 
 }

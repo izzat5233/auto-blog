@@ -1,30 +1,28 @@
 package com.izzatalsharif.openai.autoblog.agent;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.izzatalsharif.openai.autoblog.agent.formatter.JsonDataFormatter;
-import com.izzatalsharif.openai.autoblog.agent.formatter.SimpleDataFormatter;
+import com.izzatalsharif.openai.autoblog.agent.handler.JsonInputFormatter;
+import com.izzatalsharif.openai.autoblog.agent.handler.JsonOutputParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
- * The AgentServiceFactory class is responsible for creating instances of the AgentService class with the appropriate data formatter.
+ * The AgentServiceFactory class is responsible for creating instances of the AgentService class, each equipped with the appropriate data handler.
  *
- * <p>Each method in this factory corresponds to a specific type of data formatter:
+ * <p>Each factory method corresponds to a specific type of data handler:
  *
  * <ul>
- *   <li>The jsonFormatterAgentService method creates an AgentService instance that uses a JsonDataFormatter.
- *   This formatter uses the Jackson ObjectMapper to convert between Java objects and JSON. This method is
- *   suitable for cases where the input and output need to be formatted as JSON.</li>
- *   <li>The simpleAgentService method creates an AgentService instance that uses a simple string formatter
- *   (DataFormatter.STRING_DATA_FORMATTER). This formatter doesn't do any conversion and is suitable for
- *   cases where the input and output are already in the correct format.</li>
+ *   <li>The {@code agentService} method creates an AgentService instance that uses a specified InputFormatter and OutputParser.
+ *   The choice of formatter and parser depends on the specific requirements of the prompt that the AgentService will be used with.
+ *   The prompt determines the format of the input and output, and the appropriate formatter and parser should be chosen accordingly.</li>
  * </ul>
  *
- * <p>The choice of data formatter depends on the specific requirements of the prompt that the AgentService will be used with.
- * The prompt determines the format of the input and output, and the appropriate data formatter should be chosen accordingly.
+ * <p>This design allows for flexibility and modularity. If a new type of data handler is needed in the future,
+ * a new method can be added to this factory to create AgentService instances with that handler.
  *
- * <p>This design allows for flexibility and modularity. If a new type of data formatter is needed in the future,
- * a new method can be added to this factory to create AgentService instances with that formatter.
+ * @see AgentService
+ * @see InputFormatter
+ * @see OutputParser
  */
 @RequiredArgsConstructor
 @Component
@@ -34,46 +32,84 @@ public class AgentServiceFactory {
 
     private final OpenaiService openaiService;
 
-    private final SimpleDataFormatter simpleDataFormatter;
+    private <I, O> AgentService<I, O> agentService(String template, InputFormatter<I> formatter, OutputParser<O> parser) {
+        return new AgentService<>(template, formatter, parser, openaiService);
+    }
 
-    /**
-     * Creates a new AgentService with the specified template and data formatter.
-     *
-     * @param template  the template to be used by the AgentService.
-     *                  it must be a valid JSON string.
-     * @param formatter the DataFormatter to be used by the AgentService
-     * @return a new AgentService instance
-     * @throws IllegalArgumentException if the template does not contain a prompt placeholder
-     */
-    public <I, O> AgentService<I, O> agentService(String template, DataFormatter<I, O> formatter)
-            throws IllegalArgumentException {
-        return new AgentService<>(template, formatter, openaiService);
+    private <I> JsonInputFormatter<I> jsonFormatter() {
+        return new JsonInputFormatter<>(objectMapper);
+    }
+
+    private <O> JsonOutputParser<O> jsonParser(Class<O> clazz) {
+        return new JsonOutputParser<>(objectMapper, clazz);
     }
 
     /**
-     * Creates a new AgentService with the specified template and a JsonDataFormatter.
+     * Creates a new AgentService with the specified template and data handler.
      *
-     * @param template    the template to be used by the AgentService
+     * @param template  the template to be used by the AgentService.
+     *                  It must be a valid JSON string.
+     * @param formatter the InputFormatter to be used by the AgentService
+     * @param parser    the OutputParser to be used by the AgentService
+     * @return a new AgentService instance
+     * @throws IllegalArgumentException if the template does not contain a prompt placeholder
+     */
+    public <I, O> AgentService<I, O> createAgentService(String template, InputFormatter<I> formatter, OutputParser<O> parser)
+            throws IllegalArgumentException {
+        return agentService(template, formatter, parser);
+    }
+
+    /**
+     * Creates a new AgentService with the specified template and a JSON InputFormatter.
+     *
+     * @param template the template to be used by the AgentService.
+     *                 It must be a valid JSON string.
+     * @param parser   the OutputParser to be used by the AgentService
+     * @return a new AgentService instance
+     * @throws IllegalArgumentException if the template does not contain a prompt placeholder
+     */
+    public <I, O> AgentService<I, O> createJsonFormatterAgentService(String template, OutputParser<O> parser) {
+        return agentService(template, jsonFormatter(), parser);
+    }
+
+    /**
+     * Creates a new AgentService with the specified template and a JSON OutputParser.
+     *
+     * @param template    the template to be used by the AgentService.
+     *                    It must be a valid JSON string.
+     * @param formatter   the InputFormatter to be used by the AgentService
      * @param outputClass the class of the output object
      * @return a new AgentService instance
      * @throws IllegalArgumentException if the template does not contain a prompt placeholder
      */
-    public <I, O> AgentService<I, O> jsonFormatterAgentService(String template, Class<O> outputClass)
-            throws IllegalArgumentException {
-        var formatter = new JsonDataFormatter<I, O>(objectMapper, outputClass);
-        return agentService(template, formatter);
+    public <I, O> AgentService<I, O> createJsonParserAgentService(String template, InputFormatter<I> formatter, Class<O> outputClass) {
+        return agentService(template, formatter, jsonParser(outputClass));
     }
 
     /**
-     * Creates a new AgentService with the specified template and a SimpleDataFormatter.
+     * Creates a new AgentService with the specified template and both a JSON InputFormatter and OutputParser.
      *
-     * @param template the template to be used by the AgentService
+     * @param template    the template to be used by the AgentService.
+     *                    It must be a valid JSON string.
+     * @param outputClass the class of the output object
      * @return a new AgentService instance
      * @throws IllegalArgumentException if the template does not contain a prompt placeholder
      */
-    public AgentService<String, String> simpleAgentService(String template)
-            throws IllegalArgumentException {
-        return agentService(template, simpleDataFormatter);
+    public <I, O> AgentService<I, O> createJsonAgentService(String template, Class<O> outputClass) {
+        return agentService(template, jsonFormatter(), jsonParser(outputClass));
+    }
+
+    /**
+     * Creates a new AgentService with the specified template and simple string-based InputFormatter and OutputParser.
+     * It does not perform any special formatting or parsing.
+     *
+     * @param template the template to be used by the AgentService.
+     *                 It must be a valid JSON string.
+     * @return a new AgentService instance
+     * @throws IllegalArgumentException if the template does not contain a prompt placeholder
+     */
+    public AgentService<String, String> createSimpleAgentService(String template) {
+        return agentService(template, input -> input, output -> output);
     }
 
 }
