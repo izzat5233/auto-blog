@@ -31,14 +31,15 @@ public class ArticleService {
                         .orElseThrow(ArticleNotFoundException::new));
     }
 
-    public void createArticle(ArticleDTO articleDTO) {
+    public ArticleDTO createArticle(ArticleDTO articleDTO) {
         var article = ArticleMapper.MAPPER.toArticle(articleDTO);
         // make sure title is unique
         // todo: replace with a @Unique validator
         if (articleRepository.findByTitle(article.getTitle()).isPresent()) {
             throw new ArticleRequestException("title already used");
         }
-        articleRepository.save(article);
+        article = articleRepository.save(article);
+        return ArticleMapper.MAPPER.toArticleDTO(article);
     }
 
     public void deleteArticle(String title) {

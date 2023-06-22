@@ -23,6 +23,6 @@ public interface SectionMapper {
 
     @Mapping(target = ".", source = "sectionOutline")
     @Mapping(target = "keywords", source = "keywords")
-    SectionExtraOutline toWriterPrompt(SectionOutline sectionOutline, String keywords);
+    SectionExtraOutline toSectionExtraOutline(SectionOutline sectionOutline, String keywords);
 
 }

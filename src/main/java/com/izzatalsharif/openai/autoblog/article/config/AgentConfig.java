@@ -1,4 +1,4 @@
-package com.izzatalsharif.openai.autoblog.article;
+package com.izzatalsharif.openai.autoblog.article.config;
 
 import com.izzatalsharif.openai.autoblog.agent.AgentService;
 import com.izzatalsharif.openai.autoblog.agent.AgentServiceFactory;

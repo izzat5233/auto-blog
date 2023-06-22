@@ -1,5 +1,7 @@
 package com.izzatalsharif.openai.autoblog.agent;
 
+import reactor.core.publisher.Mono;
+
 /**
  * The AgentService class is a key component in the interaction with the OpenAI API.
  * It is responsible for sending requests to the API and processing the responses.
@@ -27,7 +29,7 @@ package com.izzatalsharif.openai.autoblog.agent;
  * <p>The request template must contain a placeholder for the prompt that will be included in the request.
  * The placeholder is specified in the template as "{prompt}".
  *
- * <p>For example, a template might look like this:
+ * <p>For example, a template (usually stored in a .json file) might look like this:
  * <pre>
  * {
  *   "model": "gpt-3.5-turbo",
@@ -89,20 +91,21 @@ public class AgentService<I, O> {
      * Sends a request to the OpenAI API with the given input data, and returns the parsed output data.
      *
      * @param input the input data
-     * @return the parsed output data
+     * @return Mono of the parsed output data
      */
-    public O requestAndParse(I input) {
-        var response = request(input).getContent();
-        return formatter.parseOutput(response);
+    public Mono<O> requestAndParse(I input) {
+        return request(input)
+                .map(Response::getContent)
+                .map(formatter::parseOutput);
     }
 
     /**
      * Sends a request to the OpenAI API with the given input data, and returns the raw Response.
      *
      * @param input the input data
-     * @return the raw Response from the OpenAI API
+     * @return the Mono Response from the OpenAI API
      */
-    public Response request(I input) {
+    public Mono<Response> request(I input) {
         var prompt = formatter.formatInput(input);
         var body = injectRequest(prompt);
         return openaiService.chatCompletion(body);
