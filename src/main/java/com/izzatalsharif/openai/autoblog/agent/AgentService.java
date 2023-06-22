@@ -118,19 +118,7 @@ public class AgentService<I, O> {
      * @return the request template with the prompt injected
      */
     private String injectRequest(String prompt) {
-        prompt = fixPrompt(prompt);
         return template.replace("{prompt}", prompt);
-    }
-
-    /**
-     * Replaces all double quotes in a string with single quotes.
-     * This ensures any parser can parse this JSON string.
-     *
-     * @param prompt the string in which to replace double quotes
-     * @return the string with all double quotes replaced with single quotes
-     */
-    private String fixPrompt(String prompt) {
-        return prompt.replaceAll("\"", "'");
     }
 
 }

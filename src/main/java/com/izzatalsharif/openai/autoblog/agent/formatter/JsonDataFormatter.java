@@ -17,7 +17,7 @@ public class JsonDataFormatter<I, O>
     @Override
     public String formatInput(I input) {
         try {
-            return objectMapper.writeValueAsString(input);
+            return jsonFix(objectMapper.writeValueAsString(input));
         } catch (JsonProcessingException e) {
             throw new OpenaiException("openai request couldn't parse");
         }
@@ -30,6 +30,17 @@ public class JsonDataFormatter<I, O>
         } catch (JsonProcessingException e) {
             throw new OpenaiException("openai response couldn't parse");
         }
+    }
+
+    /**
+     * Replaces all double quotes with single quotes.
+     * This ensures all JSON parsers parse it correctly.
+     *
+     * @param json the JSON string to be fixed
+     * @return the fixed JSON string
+     */
+    private String jsonFix(String json) {
+        return json.replaceAll("\"", "'");
     }
 
 }
