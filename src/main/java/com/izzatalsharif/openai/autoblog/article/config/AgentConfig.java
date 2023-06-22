@@ -3,7 +3,7 @@ package com.izzatalsharif.openai.autoblog.article.config;
 import com.izzatalsharif.openai.autoblog.agent.AgentService;
 import com.izzatalsharif.openai.autoblog.agent.AgentServiceFactory;
 import com.izzatalsharif.openai.autoblog.article.dto.agent.ArticleOutline;
-import com.izzatalsharif.openai.autoblog.article.dto.agent.SectionExtraOutline;
+import com.izzatalsharif.openai.autoblog.article.dto.agent.SectionOutline;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +36,7 @@ public class AgentConfig {
 
     @Bean
     @Qualifier("writer")
-    public AgentService<SectionExtraOutline, String> writerAgentService() throws IOException {
+    public AgentService<SectionOutline, String> writerAgentService() throws IOException {
         var template = readFile("agent/writer.json");
         return agentServiceFactory.jsonFormatterAgentService(template, String.class);
     }

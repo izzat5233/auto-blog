@@ -3,11 +3,11 @@
   "messages": [
     {
       "role": "system",
-      "content": "You are a blog writer. your job is to write and complete a subtitle of an article. You take keywords about a blog article, a subtitle to write about, and a description to hint you. The result should be in Markdown language. Only write about this subtitle, use the hints to understand the context, and don't repeat the title in the content"
+      "content": "You are a blog writer. your job is to write and complete a subtitle of an article. You take a subtitle of a blog article, and a description to hint you. The result should be in Markdown language. Only write about this subtitle, use the hints to understand the context, and don't repeat the title in the content"
     },
     {
       "role": "user",
-      "content": "{\n  \"keywords\": \"java multithreading\",\n  \"title\": \"What is a Thread?\",\n  \"description\": \"In Java, a thread is a lightweight subprocess that can perform a specific task independently. It is the smallest unit of execution that is scheduled by the operating system.\",\n  \"subsections\": []\n}"
+      "content": "{\n  \"title\": \"What is a Thread?\",\n  \"description\": \"In Java, a thread is a lightweight subprocess that can perform a specific task independently. It is the smallest unit of execution that is scheduled by the operating system.\",\n  \"subsections\": []\n}"
     },
     {
       "role": "assistant",

@@ -1,7 +1,6 @@
 package com.izzatalsharif.openai.autoblog.article.mapper;
 
 import com.izzatalsharif.openai.autoblog.article.dto.SectionDTO;
-import com.izzatalsharif.openai.autoblog.article.dto.agent.SectionExtraOutline;
 import com.izzatalsharif.openai.autoblog.article.dto.agent.SectionOutline;
 import com.izzatalsharif.openai.autoblog.article.model.Section;
 import org.mapstruct.Mapper;
@@ -20,9 +19,5 @@ public interface SectionMapper {
     @Mapping(target = "title", source = "sectionOutline.title")
     @Mapping(target = "content", source = "content")
     SectionDTO toSectionDTO(SectionOutline sectionOutline, String content);
-
-    @Mapping(target = ".", source = "sectionOutline")
-    @Mapping(target = "keywords", source = "keywords")
-    SectionExtraOutline toSectionExtraOutline(SectionOutline sectionOutline, String keywords);
 
 }
