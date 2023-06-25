@@ -21,6 +21,13 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>com.izzatalsharif.openai</groupId>
+            <artifactId>chatagent</artifactId>
+            <version>0.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/chat-agent-0.0.1.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>

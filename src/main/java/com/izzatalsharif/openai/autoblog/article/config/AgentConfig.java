@@ -1,9 +1,9 @@
 package com.izzatalsharif.openai.autoblog.article.config;
 
-import com.izzatalsharif.openai.autoblog.agent.AgentService;
-import com.izzatalsharif.openai.autoblog.agent.AgentServiceFactory;
 import com.izzatalsharif.openai.autoblog.article.dto.agent.ArticleOutline;
 import com.izzatalsharif.openai.autoblog.article.dto.agent.SectionOutline;
+import com.izzatalsharif.openai.chatagent.AgentService;
+import com.izzatalsharif.openai.chatagent.AgentServiceFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
